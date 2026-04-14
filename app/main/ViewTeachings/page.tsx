@@ -6,6 +6,7 @@ import Link from "next/link";
 import ViewTeachingsItem from "./(components)/ViewTeachingsItem";
 import IndexNavigation from "@/components/IndexNavigation";
 import { Spinner } from "@/components/ui/spinner";
+import { getAllTeachings } from "../../../actions/teaching-actions";
 
 interface particularTeachingItem {
   id: string;
@@ -31,15 +32,15 @@ const ViewTeachings = () => {
   useEffect(() => {
     const getTeaching = async () => {
       setLoading(true);
-      const getfiveTeachings = await getTeachingQty(5);
+      const getTeachings = await getAllTeachings();
       setLoading(false);
 
-      if (!getfiveTeachings) {
+      if (!getTeachings) {
         setError(true);
         return;
       }
 
-      setTeachings(getfiveTeachings);
+      setTeachings(getTeachings);
     };
 
     getTeaching();

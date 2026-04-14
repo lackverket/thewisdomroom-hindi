@@ -44,7 +44,11 @@ export const createTeaching = async ({
 };
 
 export const getAllTeachings = async () => {
-  const allTeachings = await db.teachingsHindi.findMany();
+  const allTeachings = await db.teachings.findMany({
+    orderBy: {
+        updatedAt: "desc",
+      },
+  });
   return allTeachings;
 };
 
